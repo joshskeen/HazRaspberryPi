@@ -27,12 +27,12 @@ public class Checker {
 	//frequency to check the site
 	int minutes = 5;
 	private final Timer timer = new Timer();
-	private JLabel labelToUpdate;
+	private JLabel labelLastChecked;
 	private JLabel labelRaspberryPiStatus;
 	private String htmlContent;
 	
 	public Checker(JLabel labelLastChecked, JLabel labelRaspberryPiStatus) {
-		this.labelToUpdate = labelLastChecked;
+		this.labelLastChecked = labelLastChecked;
 		this.labelRaspberryPiStatus = labelRaspberryPiStatus;
 	}
 
@@ -76,7 +76,7 @@ public class Checker {
       	Date lastCheckedDate = new Date();
       	SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
       	String status = "last checked: " + sdf.format(lastCheckedDate);
-      	labelToUpdate.setText(status.toUpperCase());
+      	labelLastChecked.setText(status.toUpperCase());
       	if(hasRaspBerryPi()){
       		labelRaspberryPiStatus.setForeground(new Color(14,121,16));
       		labelRaspberryPiStatus.setText("YEP!");

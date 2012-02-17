@@ -63,11 +63,10 @@ public class RpCheck extends JFrame {
 			JSeparator separator = new JSeparator();
 			separator.setForeground(Color.gray);
 			midPanel.add(separator, BorderLayout.SOUTH);
-			midPanel.add(labelLastChecked);
+			
 			basic.add(midPanel);
 			
 			Font fontLastChecked = new Font("Verdana", Font.PLAIN, 10);
-			labelLastChecked = new JLabel("", JLabel.CENTER);
 			labelLastChecked.setFont(fontLastChecked);
 			
 			Font fontRaspberryPiStatus = new Font("Verdana", Font.BOLD, 35);
@@ -88,10 +87,11 @@ public class RpCheck extends JFrame {
 			JButton checkNowButton = new JButton("Check!");
 			checkNowButton.setBounds(0, 10, 100, 20);
 			checkNowButton.setToolTipText("check the store now!!!");
+			
+			final Checker checker = new Checker(labelLastChecked, labelRaspberryPiStatus);
 			checkNowButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					Checker checker = new Checker(labelLastChecked, labelRaspberryPiStatus);
 					checker.checkRaspberryPiIsReleased();
 				}
 			});
@@ -100,13 +100,12 @@ public class RpCheck extends JFrame {
 			bottom.add(quitButton);
 			bottom.add(checkNowButton);
 			basic.add(bottom);
-			
+			midPanel.add(labelLastChecked);
 			setTitle("HazRaspberryPi?");
 			setSize(200, 140);
 			setResizable(false);
 			setLocationRelativeTo(null);
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			Checker checker = new Checker(labelLastChecked, labelRaspberryPiStatus);
 			checker.start();
 	}
 	
